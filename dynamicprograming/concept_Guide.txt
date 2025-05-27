@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 0/1 knapsack problem:::
 
 >>> selection of item is there 
@@ -23,3 +24,31 @@ counting problem
 grid based dp:
 >>> 2d to nd grid problem  
 
+=======
+0/1 knapsack problem:::
+
+>>> selection of item is there 
+>>> selection with following constraint 
+>>> 
+
+
+
+
+
+Lcs:::
+problem of subsequence or substring 
+
+
+
+
+
+recursive approched:::
+counting problem 
+
+
+
+grid based dp:
+>>> 2d to nd grid problem  
+
+
+>>>>>>> 0d7d62bbc9f558f57947273b200b32944b654392
