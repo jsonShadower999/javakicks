@@ -1,0 +1,17 @@
+create a window 
+process the window data 
+if needed include it in next window !!!
+
+sliding window ....
+the window can be fixed /variable 
+
+fixed window .....concept:::
+search for k the size of window 
+process the window  
+slide the window shifiting to process next 
+
+variable size window ::::
+the window size k is not fixed it keeps on expanding or collapsing 
+the expansion n collapse will be certain on condition ...
+
+
