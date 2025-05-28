@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 // Input: nums = [1,1,1,1,1], target = 3
 // Output: 5
 // Explanation: There are 5 ways to assign symbols to make the sum of nums be target 3.
@@ -55,7 +54,6 @@ public class TargetSum{
     }
     //main func
 }
-=======
 // Input: nums = [1,1,1,1,1], target = 3
 // Output: 5
 // Explanation: There are 5 ways to assign symbols to make the sum of nums be target 3.
@@ -112,4 +110,3 @@ public class TargetSum{
     }
     //main func
 }
->>>>>>> 0d7d62bbc9f558f57947273b200b32944b654392
