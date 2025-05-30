@@ -1,6 +1,12 @@
 //hard !!!
 //try again ,!!!
+// Alice and Bob are opponents in an archery competition. The competition has set the following rules:
 
+// Alice first shoots numArrows arrows and then Bob shoots numArrows arrows.
+// The points are then calculated as follows:
+// The target has integer scoring sections ranging from 0 to 11 inclusive.
+// For each section of the target with score k (in between 0 to 11), say Alice and Bob have shot ak and bk arrows on that section respectively. If ak >= bk, then Alice takes k points. If ak < bk, then Bob takes k points.
+// However, if ak == bk == 0
 // class Solution {
 //     public int[] maximumBobPoints(int numArrows, int[] aliceArrows) {
         
