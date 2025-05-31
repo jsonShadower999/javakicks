@@ -1,0 +1,24 @@
+#higher priority is removed first 
+#if same priority , dequeue in order of insertion 
+import queue 
+pq=queue.PriorityQueue()
+pq.put((2,"tsk1"))
+pq.put((3,"tsk7"))
+while not pq.empty():
+    print(pq.get()[1])
+
+
+
+import heapq 
+pq=[] 
+heapq.heappush(pq,(2,"tsk2"))
+heapq.heappush(pq,(1,"tsk1"))
+
+while pq:
+    print(heapq.heappop(pq)[1])
+
+
+# Insertion: O(log n) — due to the need to maintain the heap property.
+# Deletion: O(log n) — for removing the root element and reheapifying.
+# Peek: O(1) — the top element of the heap is directly accessible.
+# Build Heap: O(n) — for converting an unsorted array into a heap.

@@ -1,0 +1,14 @@
+Given :::
+
+Kth element to find 
+kth smallest/largest 
+
+if asked for k th smallest -->use max heap 
+if asked for k th largest ==>use  min heap  
+
+top k 
+bottom k 
+
+mergeing , summing , find meadian , find char of K th term , or from k 
+
+
