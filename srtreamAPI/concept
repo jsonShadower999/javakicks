@@ -1,0 +1,6 @@
+method chaining :::
+//fiunctions
+filter() // check for condition met
+map() // compute for all ele
+reduce()// single result combined computation
+collect() // collect as 
