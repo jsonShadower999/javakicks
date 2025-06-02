@@ -1,0 +1,47 @@
+method chaining :::
+//fiunctions
+filter() // check for condition met
+map() // compute for all ele
+reduce()// single result combined computation
+collect() // collect as {toList,toSet,toMap}
+
+>>collection vs stream
+//Collections.sort(list,Comparator)
+
+list.stream().sorted().forEach(System.out::println);
+>>itermediate :
+>>terminal operation:findany,findfirst,findlast
+>>lazy evaluation 
+>> flat datastructure 
+>> forEachOrdered() 
+>>Stream.of(),Arrays.stream() 
+
+forEach: Prints each name in the list.
+collect: Filters names starting with 'S' and collects them into a new list.
+reduce: Concatenates all names into a single string.
+count: Counts the total number of names.
+findFirst: Finds and prints the first name in the list.
+allMatch: Checks if all names start with 'S'.
+anyMatch: Checks if any name starts with 'S'.
+map
+mapToInt 
+intermediate operations:::
+filter() 
+distinct()
+limit() skip() 
+map() flatmap()
+sorted()
+peek() 
+
+terminal operations::
+count()
+min() 
+max()
+findAny() 
+findFirst() 
+anyMatch() ,allMatch() , noneMatch() 
+forEach() 
+collect() 
+reduce() 
+
+
