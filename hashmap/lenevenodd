@@ -1,0 +1,26 @@
+import java.util.*;
+
+public class Solution {
+    public static int[] countEvenOdd(int[] arr, int n) {
+        HashMap<Integer, Integer> mp = new HashMap<>();
+        int cnt_even = 0, cnt_odd = 0;
+
+        // Count frequency of each number
+        for (int i = 0; i < arr.length; i++) {
+            mp.put(arr[i], mp.getOrDefault(arr[i], 0) + 1);
+        }
+
+        // Count even and odd frequency occurrences
+        for (Map.Entry<Integer, Integer> entry : mp.entrySet()) {
+            int value = entry.getValue();
+            if (value % 2 == 0) {
+                cnt_even++;
+            } else {
+                cnt_odd++;
+            }
+        }
+
+        return new int[]{cnt_odd, cnt_even};
+    }
+
+}

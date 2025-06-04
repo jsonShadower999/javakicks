@@ -1,0 +1,30 @@
+import java.util.*;
+
+public class Solution {
+    public static int distinctSubKOdds(int[] arr, int k) {
+        //Set<String> result = new HashSet<>();
+        ArrayList<String> result=new ArrayList<>();
+
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = i; j < arr.length; j++) {
+                ArrayList<Integer> smallset = new ArrayList<>();
+                int cnt_odd = 0;
+
+                for (int m = i; m <= j; m++) {
+                    smallset.add(arr[m]);
+                    if (arr[m] % 2 != 0) {
+                        cnt_odd++;
+                    }
+                }
+
+                if (cnt_odd == k) {
+                    result.add(smallset.toString()); 
+                }
+            }
+        }
+
+        return result.size();
+    }
+
+   
+}
