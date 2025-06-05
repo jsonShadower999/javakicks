@@ -1,0 +1,41 @@
+import java.util.*;
+
+class Main {
+    public static void main(String[] args) {
+        String str = "0102010";
+        int res = findValidSubstrings(str);
+        System.out.println(res);  
+    }
+
+    public static int findValidSubstrings(String str) {
+        int n = str.length();
+        int validCnt = 0;
+
+        for (int i = 0; i < n; i++) {
+            int c0 = 0, c1 = 0, c2 = 0;
+
+            for (int j = i; j < n; j++) {
+                //now from i to n can be sequenced substring formulation 
+                // in all sequence formed check count 
+                char ch = str.charAt(j);
+                if (ch == '0') {
+                    c0++;
+                }
+                
+                else if (ch == '1') {
+                     c1++;
+                }
+                else if (ch == '2'){
+                    c2++;
+                }
+
+                // If counts are equal, it's a valid substring
+                if (c0 == c1 && c1 == c2) {
+                    validCount++;
+                }
+            }
+        }
+
+        return validCount;
+    }
+}
