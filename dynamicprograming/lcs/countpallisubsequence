@@ -1,0 +1,83 @@
+// import java.util.*;
+
+// class Main {
+//     public static void main(String[] args) {
+//         String str = "gfg";
+//         int cnt = checkrecur(str, "");
+//         System.out.println(cnt);
+//     }
+
+//     public static int checkrecur(String str, String smallans) {
+//         int cnt_palli=0;
+//         if (str.length() == 0) {
+            
+//             if (isPalindrome(smallans)) {
+//                 cnt_palli++; 
+               
+//             } 
+//             return cnt_palli;
+//         }
+         
+
+       
+       
+
+//         //i include the curr char
+//         int res1 = checkrecur(str.substring(1), smallans + str.charAt(0));
+
+//         // i refuse the curr char
+//         int res2 = checkrecur(str.substring(1), smallans);
+
+//         return res1 + res2;
+//     }
+
+//     public static boolean isPalindrome(String s) {
+//         int i = 0, j = s.length() - 1;
+//         while (i < j) {
+//             if (s.charAt(i) != s.charAt(j)) return false;
+//             i++;
+//             j--;
+//         }
+//         return true;
+//     }
+// }
+
+
+import java.util.*;
+
+class Main {
+    public static void main(String[] args) {
+        String str = "gfg";
+        int pallicnt = checkrecur(str, new StringBuilder(), 0);
+        //original , result,pallicnt
+        System.out.println("Palindromic subsequences count: " + pallicnt);
+    }
+
+    public static int checkrecur(String str, StringBuilder smallans, int pallicnt) {
+        if (str.length() == 0) {
+         // check kro smallans  ka content agar jo hmko subsequence mili ,n its valid palli to its our hit point c++
+            if (smallans.length() > 0) {
+                String original = smallans.toString();
+                String reversed = new StringBuilder(original).reverse().toString();
+                if (original.equals(reversed)) {
+                    return pallicnt + 1;
+                }
+            }
+            return pallicnt;
+        }
+
+        char ch = str.charAt(0); // isko include kia 
+        String rest = str.substring(1);// next bari pos+1 se start to see
+
+        //to ch+res means a subsequence wala string ko stated as curr result
+        smallans.append(ch);
+         //check for all next ....
+        pallicnt = checkrecur(rest, smallans, pallicnt);
+//case two ch ko consider nhi kia , small ans wali jo string i not undertaken as valid result 
+        smallans.deleteCharAt(smallans.length() - 1); // delete kro abi ka add kia character 
+          //repeat the call without taking in that character , pallicnt only increment on check 
+        pallicnt = checkrecur(rest, smallans, pallicnt);
+
+        return pallicnt;
+    }
+}
