@@ -1,3 +1,22 @@
+
+// Input: str = "ggg"
+// Output: 4
+// Explanation: The four distinct subsequences are "", "g", "gg" and "ggg"
+
+
+// a string can be palli or not palli
+// for palli string gfg 
+// empty , g,f,g,gf,fg,gg,gfg  8
+// one half gf ---> empty, g,f,gf ---4
+// second half ===>fg=>empty,f,g,fg---4 
+
+
+// geeg ->empty,g,e,e,g,ge,ee,eg,gg,gee,eeg,geeg=12
+// ge-->empty,g,e,ge--4
+// eg-->empty,e,g,eg--4
+//no math formulas
+
+
 // import java.util.*;
 
 // class Main {
