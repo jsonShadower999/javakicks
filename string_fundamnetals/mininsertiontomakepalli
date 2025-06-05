@@ -1,0 +1,68 @@
+// Online Java Compiler
+// Use this editor to write, compile and run your Java code online
+
+
+// Input: s = "geeks"
+// Output: 3
+// Explanation: "skgeegks" is a palindromic string, which requires 3 insertions.
+
+
+
+//shortcut //
+//most worse 
+// string ==validcase string.concate(reversestring)--->this willbe always true 
+// the min valid case to be palli following is a longestsubstringfollowing palli()
+// now we need to check for nlongestsubstringfolowingpalli
+// check ...means theses are volilation point tooo...
+// just same append reversestrign for them res=n-longestsubstringfollowing palli()
+// else recur()
+
+// minInsertions = str.length() - longestPalindromicSubsequence(str);
+
+// class Main {
+//     public static void main(String[] args) {
+//         String a="geeks";
+//         int max_len_palli=-1;
+//         int curr_len_valid_str=-1;
+//         for(int i=0;i<a.length();i++){
+//             for(int j=i;j<a.length();j++){
+//                 String inprocess=a.substring(i,j);
+//                 if(inprocess.equals(inprocess.reverse().toString())){
+//                     curr_len_valid_str=inprocess.length();
+//                     max_len_palli=Math.max(max_len_palli,curr_len_valid_str);
+                    
+                    
+                    
+//                 }
+               
+                
+//             }
+            
+//         }
+//         return a.length()-max_len_palli;
+        
+       
+//     }
+// }
+
+class Main {
+    public static void main(String[] args) {
+        String a = "geeks";
+        int max_len_palli = 0;
+
+        for (int i = 0; i < a.length(); i++) {
+            for (int j = i; j < a.length(); j++) {
+                String inprocess = a.substring(i, j + 1);
+                String reversed = new StringBuilder(inprocess).reverse().toString();
+
+                if (inprocess.equals(reversed)) {
+                    max_len_palli = Math.max(max_len_palli, inprocess.length());
+                }
+            }
+        }
+
+        int minInsert = a.length() - max_len_palli;
+        System.out.println(minInsert);
+       
+    }
+}
