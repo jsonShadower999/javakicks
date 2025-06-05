@@ -1,0 +1,44 @@
+// Online Java Compiler
+// Use this editor to write, compile and run your Java code online
+
+
+// nput: s = "abababa", s1 = "aba", s2 = "a"
+//ababa
+// Output: aba
+// Explanation: Change the substrings s[0, 2] and s[4, 6] to the string s2 modifies the string s to "aba". 
+
+// #create  a window of length 3 
+// #then with in window check for the s subpart matches equals s1
+// #if yes , then replace subpart with s2 = newstring for next time
+// #if no , check next window possible by removing first ele of window n adding last element 
+class Main {
+    public static void main(String[] args) {
+        String s = "abababa";
+        String s1 = "aba";
+        String s2 = "a";
+        
+        int i = 0;
+        //jb tk mai sari window ko traverse nhi kr leti 
+        //last window k start point tk 
+        while (i <= s.length() - s1.length()) {
+            //to subrting can be i se window sizze tk means +3
+            String sub = s.substring(i, i + s1.length());
+            // agar window == s1
+            
+            if (sub.equals(s1)) {
+                // Replace s1 with s2
+                //sub str i se +3 tk 
+                //s ==0 to i then after i+3 
+                s = s.substring(0, i) + s2 + s.substring(i + s1.length());
+                // ye valid teast case to window 1 is done , its valid window to next wali window s2 ki occurance k bad 
+                // next window ka start point is i to shift ki i 
+                
+                i = s2.length()+1; 
+            } else {
+                i++; // agar nhi valid mili to shift by 1 
+            }
+        }
+
+        System.out.println("Modified string: " + s); // Output: aba
+    }
+}
