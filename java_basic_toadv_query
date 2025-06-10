@@ -1,0 +1,54 @@
+object, class, inheritance, polymorphism , Abstraction , Encapsulation 
+API n runtime enviromnment 
+Java api  has class loader , 
+runtime env  
+bytecode verifier 
+
+ JIT compiler: .java to .class 
+  how RMI and EJB help to build distributed system ?*****
+  java does not support operator overloading ?why 
+  java support call by value only ?
+  diff between JDK , JRE , JVM ?
+  jre-->classloader,classarea,heap,stack,pc,methods 
+
+
+  class area --->runtime constant pool , properties of class , methods related data 
+  heap:---> new keyword objects , garbage collector young gen +old genc 
+  stack-->local variable of class , each thread has its own stack 
+execution engine:processor , interpreter , complier 
+
+  type of variable:local, instance , static 
+
+  computer decode those 0 n 1 with algo unicode system 
+  break n continue are used in loop not in if else 
+  or use switch(expression) case 1,2,3,4,default: break ;
+
+ factorial(n)=factorial(n-1)*n 
+ primeno i=2 to sqrt(n) if  given_number%i then not prime 
+
+  import java.lang.Math ;
+  random_no=Math.random();
+
+    
+    
+   
+
+
+
+   
+  
+
+
+    
+    
+  
+  
+  
+  
+  
+  
+  aslist vs oflist
+  char[] char_array = strings.toCharArray()
+   
+  
+  
