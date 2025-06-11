@@ -1,4 +1,6 @@
 object, class, inheritance, polymorphism , Abstraction , Encapsulation 
+WORA !!!
+utility classes 
 API n runtime enviromnment 
 Java api  has class loader , 
 runtime env  
@@ -10,6 +12,19 @@ bytecode verifier
   java support call by value only ?
   diff between JDK , JRE , JVM ?
   jre-->classloader,classarea,heap,stack,pc,methods 
+
+
+Development: Use the JDK to write, compile, and debug Java code.    javac HelloWorld.java
+Deployment: Use the JRE to run Java applications on end-user machines.java HelloWorld
+Execution: The JVM, part of both JRE and JDK, actually runs the Java program.
+
+=> Dynamic class loading: 
+Class.forName(String className)
+ClassLoader.loadClass(String name)
+
+path :os
+classpath:jvm needs it to get class location 
+
 
 
   class area --->runtime constant pool , properties of class , methods related data 
@@ -28,10 +43,71 @@ execution engine:processor , interpreter , complier
 
   import java.lang.Math ;
   random_no=Math.random();
+wrapper classes : null , collection, steam , beans property 
+    
+    
+   .java JDK .javac format  jvm execution of binary form 
 
-    
-    
-   
+when is garbage collection operation starts ? 
+jvm manage it !!!
+strong ref--->>new keyword 
+weak ref---->>
+finalize()
+
+marking_objects---> deletion-->
+
+Algo /ways of gARABage clean up
+>>serial gc 
+>>parallel gc
+
+==>young,old,permanaentgenc /metaspace 
+
+object , interface , abstract class , polymorphism , encapsulation , coupling , cohesion
+multiple inheitance not supported for class but why for interface 
+overload vs overrid e
+operator overload not supported in java 
+why return type overloading is not supported 
+overload main method ,
+No, a static method cannot be overridden in Java
+### covariant return type specifies that the return type may vary in the same direction as the subclass
+###the covariant return type is implemented by allowing a subclass method to return a subtype of the superclass method's return type. 
+super vs this===immediate parent vs current_instance in use 
+final vs finalize vs finally
+polymorphism ::: single task in different ways !!!
+                >>> multiple method/implementation ::::-method overload >>>compile time??early binds --static binding
+                >>> multiple method in different class :::-override >>>runtime ??dynamic binding --late binding 
+                Device d= new mobile();new Phone(); new Videogame()
+which is fast static binding or dynamic bindiung?
+
+Abstract class :::need ?
+abstract class vs interface "?
+if i have interface , whats need of abstract class now!!!
+default, static,private method can persist for interface ?
+>>>>An empty interface :serializable , clonable ,... are marker interface 
+
+to restrict the object definition ?
+Access specifier -----> private , protected , default ;  abstract , sync , native ,transient 
+
+
+
+=============================================================
+coding ::::
+Array: 
+arr.length/
+int carr[]=arr.clone();    /
+import java.util.Arrays;
+Arrays.sort(arr);
+int b[] = Arrays.copyOf(a, 3);   /
+Collections.sort(arr_list);
+Collections.sort(arr_list,Collections.reverseOrder());
+
+
+
+
+
+
+
+
 
 
 
