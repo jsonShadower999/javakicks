@@ -1,0 +1,26 @@
+Sum_of_all_element_arr :::: iterate /stream 
+Reverse_arr ::: twopinter, recursion , loop_reverse , stream 
+kth_smallest ::: make max heap of size k , 
+remove duplicate ::: hashmap , hashset , sort-->iterate 
+frequency of word in string ::: String[] words=str.split("\\s+");    foor words make hashmap 
+missing number = sum(range(min,max))-current_arr_sum
+findunique element in array: xor , becoz 10^10=0
+pallindrome ::: twopointer , 
+random number in array :  int j=rand.nextInt(end_range); 
+max frequency element of array : sort n count , hashmap
+even before odd :twopointer
+                 swap(arr,left,right); // Swap the elements if the left element is odd and the right element is even   
+                 n move both the pointers
+intersection of two array::: hashset
+1234 
+123
+set=1234
+if i in second_arr:if i in set: res.add(ele),removefromset(ele)
+
+
+
+longest subarray with equal 1 n 0::::
+
+
+
+
