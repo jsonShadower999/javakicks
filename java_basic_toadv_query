@@ -61,7 +61,21 @@ Algo /ways of gARABage clean up
 >>parallel gc
 
 ==>young,old,permanaentgenc /metaspace 
+===================================================================
+java.security 
+AccessController
+AuthProvider 
 
+================================================================
+why java is termed as secure lang ?
+run on sandbox virtual machine
+no pointer ased hacking 
+packages to monitor security 
+JVM/security API/security manager /exception handler /no pointer
+
+
+
+====================================================================
 object , interface , abstract class , polymorphism , encapsulation , coupling , cohesion
 multiple inheitance not supported for class but why for interface 
 overload vs overrid e
@@ -86,7 +100,169 @@ default, static,private method can persist for interface ?
 >>>>An empty interface :serializable , clonable ,... are marker interface 
 
 to restrict the object definition ?
-Access specifier -----> private , protected , default ;  abstract , sync , native ,transient 
+Access specifier -----> private , protected , default ;  abstract , sync , native ,transient
+
+Object class!!!
+The Object class provides several methods :::
+toString() method:obj to string formated
+hashCode() method
+equals(Object obj) method
+finalize() method
+getClass() method
+clone() method
+wait(), notify() notifyAll() (Concurrency methods)
+
+
+what is hashcode()::::
+A common misconception about this method is that the hashCode() method returns the address of the object, which is not correct.
+It converts the internal address of the object to an integer by using an algorithm.
+
+cloning vs copying :::
+class Student implements Cloneable {
+
+    // other components
+
+    public Student clone()
+        throws CloneNotSupportedException
+    {
+
+        // call Object.clone()
+        Student obj = (Student)super.clone();
+
+        // clone mutable fields
+        obj.birthDay = (Date)birthDay.clone();
+    }
+}
+===========================================================
+wrapper class:
+Autoboxing: primitive types to the object
+=============================================================
+String :::
+>>>why concatination in string is slow? immutable 
+>>>String::: JVM string constant pool 
+
+@StringBuffer /@StringBuilder-----> insert,append,delete
+String s4 = new String("Hello").intern(); 
+
+compareTo():::: compare string in an order , content  , return 0,-1,1
+equals() ::: content  true/false
+compare()
+==      ::: reference address
+equalsIgnoreCase()
+
+ String s="iamnotchangeable";  
+ s.concat(" letstry");//concat() method appends the string at the end  
+ System.out.println(s);//will print Sachin because strings are immutable objects  
+
+ String s="iamnotchangeable";  
+ s=s.concat("newstorecanuseme");  
+  System.out.println(s);  
+===================================
+@JOIN ELEMENTS IN SIDE THE ARRAY
+
+List<String> liststr = Arrays.asList("abc", "pqr", "xyz"); //List of String array  
+String str = liststr.stream().collect(Collectors.joining(", ")); //performs joining operation  
+
+
+s.toUpper()
+s.toUpperCase()/LowerCase()
+s.trim()
+s.concat()
+s.startsWith()/endsWith()
+s.replace()
+s.swapcase()
+s.capitalize()
+s.isdigit()
+s.toCharArray()
+s.contains()
+s.indexOf("acilie")
+s.isEmpty()
+String[] words=s1.split("\\s") #whitespace spliter
+
+
+
+
+
+============================================
+
+String Buffer:::
+>>thread safe/
+>>append,insert,delete(s,e),reverse,substring
+
+
+============================================
+java-lang-object-throwable-excpetion/error
+Exception :::checked, unchecked ,error
+           checked:::compile time , unchecked::runtime ,error :not handled
+
+Filenotfound
+ArrayOutOfBound
+>>specific to generic exception listing block 
+>>throw vs throws 
+forcefull_throwing: throw new exception();
+>>exception class 
+===============================================
+
+
+thread vs process 
+thread 
+mutithreading::: multiple athread sharing cpu, memory space, resources , 
+thread lifecycle:::new /runnable/running/blocked/dead
+
+threadpriority - 1 to 10 , NORM_PRIORITY=5
+
+
+start()--->run()--->setPriority()||setName()||setDaemon()--->isAlive()
+dumpStack()? what it does ?
+thread creation :::
+>>>> By Implementing a Runnable Interface
+>>>> By Extending a Thread Class
+
+
+join()::: current thread is inactive till the another thread has completed its task 
+sleep():::current thread is in active for a duration
+
+Java provides a java.util.concurrent.
+ScheduledExecutorService interface which is a subinterface of ExecutorService interface, 
+and supports future and/or periodic execution of tasks/threads.
+
+
+
+1. A new request from client for server create a new thread for all client request ?what is poor or good about this design ?
+2. Executorservice--->threadpoolexecutor(that creates the thread before hand )
+uneed to just call runnable when cpu is read for load acceptance .? design 2 what is good n poor points?
+
+""""
+Runnable r1,r2,r3,r4,r5=new Task("t1","t2","t3","t4","t5");
+ExecutorService pool=Executors.newFixedThreadPool(5);
+pool.execute(r1,r2,r3,r4,r5)
+pool.shutdown();
+""""
+>>> in design 2 ... multiple threads at same time can demand for same resource deadlock ....
+                    thread leakage
+                    thrashing/context switching STARVATION OF CPU 
+
+
+Daemon vs main thread vs user thread 
+Daemon: garbage collector , low priority 
+
+Thread vs thread group!!!
+shutdownhook>::  System.exit(),kill signal 
+Runtime class can control daemon , shutdown hook 
+
+=================================================
+0. os run java.exe , loads jvm lib n datastructure setup 
+1. JVM uruns gc , daemon , signal dispatcher , JIT first go
+2. main thread then main() is executed
+..... till the main ifnisheas its last line JVM runs , n all user threads too 
+....if now main is finished ...only daemon remains , daemon thread get them self stop
+
+3. A shudden stoppage :::
+on system.exit() trigger then shutdownhook is called at runtime termination occures
+before jvm stops the system or a specific thread can be cutoff 
+
+4. each thread after its run() code got executed is demanded for garbage collection 
+
 
 
 
