@@ -1,0 +1,65 @@
+Rapid application dev how?
+spring+tomcat+xml/@configuration=spring boot
+bolilerplate code?
+current spring config that u r uisng in spring project?
+what is propetires file?YAML 
+--- contains configurations 
+spring vs spring boot vs spring mvc
+
+
+spring:::
+dependency injection , ioc container , application context 
+loosely coupled application 
+
+boot::
+autoconfiguration 
+less config n xml needed 
+has embedded server 
+
+mvc:
+web application making 
+deploy descriptor is required 
+
+
+architecture:::
+client --->controller-->service--model---database_objects
+
+spring annotations ::: metadata 
+
+@Required
+@Autowired 
+@Configuration---bean defition 
+@Bean---alternate of xml config for class 
+
+
+@ComponentScan()::: scan the package for bean formulation 
+@Configuration
+@EnableAutoConfiguration
+
+@SpringBootApplication
+
+@Component
+@Controller
+@RestController 
+@Service
+@Repository
+
+
+@RequestMapping
+
+@getMapping
+@PostMapping
+@PutMapping
+@DeleteMapping 
+@RequestBody 
+@ResponseBody
+@PathVariable :::value from uri 
+@RequestParam ::: it is used to get key-value pair from uri ,query parameter 
+
+
+src/main/resources/application.properties 
+Configure the Spring Boot framework
+define our application custom configuration properties
+what all things info u can write in application .properties file?
+db info , cache , gateway , mulitple service url , template , acutor , test 
+
