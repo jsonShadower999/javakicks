@@ -137,6 +137,15 @@ class Student implements Cloneable {
 wrapper class:
 Autoboxing: primitive types to the object
 =============================================================
+Reflection:::
+>>> Reflection is an API that is used to examine or modify 
+the behavior of methods, classes, and interfaces at runtime.
+>>> forName().getClass().class
+    Class.forName("claasABC")
+>>> debugging the code 
+
+
+===========================================================
 String :::
 >>>why concatination in string is slow? immutable 
 >>>String::: JVM string constant pool 
@@ -250,6 +259,10 @@ Thread vs thread group!!!
 shutdownhook>::  System.exit(),kill signal 
 Runtime class can control daemon , shutdown hook 
 
+
+
+
+
 =================================================
 0. os run java.exe , loads jvm lib n datastructure setup 
 1. JVM uruns gc , daemon , signal dispatcher , JIT first go
@@ -263,10 +276,143 @@ before jvm stops the system or a specific thread can be cutoff
 
 4. each thread after its run() code got executed is demanded for garbage collection 
 
+thread synchronisation: synchronized block ,
+                         monitors 
+=======================================================
+serialization::: 
+objects are nested or complexed format , so it is converted to linear , byte-based format 
+that is stream 
+why cNannot we store java objects directly ?
+Java objects in memory:
 
+Have references, pointers, metadata, and object headers that are JVM-specific
+May reference other objects (deep nesting, circular references)
+Aren’t in a flat or portable format
+So if we try to store an object directly in memory or DB:
+You’d lose the structure or data
 
 
 =============================================================
+java collections >>>
+::: collection framework : interface algorithm 
+
+iterable ---collection ----list||queue||set 
+
+List<Integer> l_arr=new ArrayList()|new LinkedList()|new Vector()|new Stack();
+l_arr.add/.set(index,ele)/remove(ele)/remove(index)/push/pop/addAll(list)/removeAll()/clear()
+l_arr.isEmpty()
+l_arr.size()
+Queue<String> qi=new PriorityQueue()|new ArrayDeque()
+
+Set<Integer> s1=new HashSet<>()|new LinkedHashSet<>()| new TreeSet<>()
+
+Map<String,Integer> map=new HashMap<>()
+for(Map.Entry<String,Integer> entry:map.entrySet())
+
+Collections.sort(list_arr)
+Collections.sort(list_arr,Collections.reverseOrder())
+list_arr.forEach(a->a);
+
+
+Iterator<String> itr=arr_list.iterator();
+while(itr.hasNext()){
+sopln(itr.next())
+}
+
+Arrays.toString(array)
+
+Deque<String> deque=new ArrayDeque<String>();
+dequeu.add("abc")
+offer()
+poll()
+
+Map mp=new HashMap()
+mp.put(1,"abs")
+
+====================================================
+
+copy constructor
+coerion
+new vs newInstance()
+functional interface : 1 abstract method 
+when to use vector ::: thread sys 
+concurrent hashmap
+generics in java 
+stream() vs parallelstream()
+>>assert in debugging 
+annotations 
+cyclic barrier in thread 
+fail fast vs fail safe 
+volatile :::multithreading , visible to multiple thread 
+Runnable vs callable :
+lambda func 
+fork() vs join()
+stamedlock vs reentrancelock
+transient
+executpr n excecutor interface
+Method handle vs reflection
+functional intercae:::: consumer,supplier,predicate, function , bifunction
+flatmap vs map
+Comaprable :: compareTo()
+Comparator()
+equals vs hashcode 
+Optional Class 
+try-with-resource statement 
+What are default and static methods in interfaces?
+ 4. How does Optional help avoid NullPointerException?
+ 5. Write a code snippet to filter a list of integers greater than 10 using streams.
+
+ 1. Difference between synchronized block and method?
+ 2. What are volatile and atomic variables?
+ 3. Explain the Executor framework.
+ 4. What are deadlock and livelock?
+ 5. How does CompletableFuture work?
+1. What is Optional class in Java?
+2. Java 8 features – What’s new & powerful?
+3. Comparator vs Comparable
+4. Abstract class vs Interface
+5. What is a Functional Interface?
+6. Use of the volatile keyword
+7. Use of the transient keyword
+8. Method Overloading vs Method Overriding
+9. Checked vs Unchecked Exceptions
+10. How to create an Immutable Class
+11. Java Thread Lifecycle
+12. == vs .equals() method
+13. HashMap vs HashTable
+14. What collections have you used in your project?
+15. ArrayList vs LinkedList
+16. How to kill a thread in Java
+17. What is a Deadlock?
+18. What is a Hash Collision?
+19. How can we create a Singleton Design Pattern?
+20. Usage of Consumer and Supplier interfaces
+ Explain your current project. How long is your sprint cycle?
+ 🔹 Have you created a framework from scratch? What challenges did you face?
+ 🔹 What is the difference between StringBuffer and StringBuilder?
+ 🔹 Write a Java program to remove duplicate elements from an ArrayList.
+ 🔹 Where have you used Inheritance in your automation framework?
+ 🔹 How would you handle an authentication popup using Selenium?
+ 🔹 How many test cases have you automated in a single sprint?
+ 🔹 Explain the difference between RequestSpecification and ResponseSpecification in Rest Assured. Also, write code and explain it.
+ 🔹 What is the difference between HTTP status code 500 and 503?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=================================================================
 coding ::::
 Array: 
 arr.length/
@@ -278,13 +424,127 @@ Collections.sort(arr_list);
 Collections.sort(arr_list,Collections.reverseOrder());
 
 
+Reverse a string
+ ✅ Check if a string is a palindrome
+ ✅ Find duplicate characters in a string
+ ✅ Count vowels, consonants, digits, and whitespace
+ ✅ Remove all whitespace from a string
+ ✅ Find the first non-repeated character (recently asked in Nagarro)
+ ✅ Check if two strings are anagrams
+ ✅ Count occurrences of a specific character
+ ✅ Convert a string to an integer (without using built-in methods)
+ ✅ Check if one string contains another substring
+ ✅ Replace all occurrences of a specific character
+ ✅ Split a string using a delimiter (e.g., comma, space)
+ ✅ Sort characters in a string alphabetically
+ ✅ Find the longest word in a sentence
+ ✅ Compare two strings (without using equals() method)
+
+1) How would you configure to run parallel API tests in TestNG or JUnit?
+2) How can you parameterize API tests to run against different environments (dev, QA, prod) dynamically?
+3) How do you validate nested JSON responses when the structure is dynamic?
+4) How do you extract and validate specific fields from an array of JSON objects in a response?
+5) How would you handle API responses that return different data types dynamically for the same field?
+6) Given an API that returns paginated results, how would you validate data consistency across multiple pages?
+7) If an API rate limits requests (e.g., throttling at 100 requests per minute), how would you implement retries with exponential backoff ?
+8) How to handle APIs that randomly return 429 (Too Many Requests) errors?
+9) If an API triggers an asynchronous process (e.g., starts a batch job and returns a Job ID), how would you validate its completion?
+10) How do you handle APIs that return multipart/form-data responses?
+11) How to simulate 1000 concurrent users hitting an API?
+12) How would you integrate Rest Assured with JMeter or Gatling for performance testing?
+13) How can you automate testing for unauthorized access scenarios using Rest Assured?
+
+class casting vs type casting
+sam interface 
 
 
 
+How does HashMap work internally in Java?
+HashMap stores key-value pairs.
+Uses hashCode() to compute index (bucket).
 
+In case of collisions, it uses a LinkedList or Tree (since Java 8) to store multiple entries in the same bucket.
 
+Uses equals() to compare keys in the same bucket.
 
+🧪 Example:
+Map<String, String> map = new HashMap<>();
+map.put("name", "Ranjit");
+map.put("name", "Appukutti"); // Overwrites previous value
+🧩 Output: Final value for "name" is "Appukutti".
 
+✅ 2. What is the difference between == and .equals() in Java?
+🧠 Key Concept: Object comparison
+
+🛠️ Explanation:
+
+== checks reference equality (memory address).
+
+.equals() checks logical equality (value).
+
+String a = new String("Java");
+String b = new String("Java");
+
+System.out.println(a == b); // false
+System.out.println(a.equals(b)); // true
+✅ Use .equals() for comparing object contents.
+
+✅ 3. Write a program to reverse a string without using built-in functions.
+🧠 Key Concept: String manipulation
+
+public class ReverseString {
+ public static void main(String[] args) {
+ String input = "Tec Skool";
+ String reversed = "";
+ for (int i = input.length() - 1; i >= 0; i--) {
+ reversed += input.charAt(i);
+ }
+ System.out.println("Reversed: " + reversed);
+ }
+}
+💡 Tip: Use StringBuilder for better performance in real-world apps.
+
+✅ 4. Explain the difference between LinkedList and ArrayList
+ArrayList Example
+import java.util.ArrayList;
+
+public class ArrayListExample {
+ public static void main(String[] args) {
+ ArrayList<String> list = new ArrayList<>();
+ list.add("Apple");
+ list.add("Banana");
+ list.add("Orange");
+
+ System.out.println("Element at index 1: " + list.get(1)); // Fast read
+ }
+}
+
+✅ LinkedList Example
+import java.util.LinkedList;
+
+public class LinkedListExample {
+ public static void main(String[] args) {
+ LinkedList<String> list = new LinkedList<>();
+ list.add("Dog");
+ list.add("Cat");
+ list.addFirst("Rabbit"); // Fast insert at beginning
+
+ System.out.println("First Element: " + list.getFirst());
+ }
+}
+These examples show:
+ArrayList is best when you read by index.
+LinkedList is useful when you add/remove items frequently, especially at the start or end
+
+✅ 5. What is the difference between final and finally?
+final int a = 10; // value cannot be changed.
+finally — Block that always executes after try-catch.
+
+try {
+ // risky code
+} finally {
+ // clean-up
+}
 
 
    
