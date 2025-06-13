@@ -1,0 +1,12 @@
+:::: DIVIDE AND CONQURE ::::
+
+divide 
+solve small problem 
+aggregate to formulate a big solution 
+
+
+cutting point of the problem must be unique , not overlapping 
+i can break the problem in independent divissions 
+
+
+
