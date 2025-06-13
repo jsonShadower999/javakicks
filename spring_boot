@@ -43,6 +43,8 @@ spring annotations ::: metadata
 @RestController 
 @Service
 @Repository
+@Entity @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+@Column
 
 
 @RequestMapping
@@ -55,6 +57,19 @@ spring annotations ::: metadata
 @ResponseBody
 @PathVariable :::value from uri 
 @RequestParam ::: it is used to get key-value pair from uri ,query parameter 
+@ModelAttribute
+
+
+@Transactional ::: @EnableTransactionManagement 
+
+@Cacheable, @CachePut , @CacheEvict , @Caching ---> @EnableCaching
+
+Log4j2
+date,time,processid,thread name , loggername 
+loggermsg::: info, error , warn 
+
+
+
 
 
 src/main/resources/application.properties 
