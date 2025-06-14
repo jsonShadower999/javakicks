@@ -1,0 +1,205 @@
+🔸 OOPs Concepts
+What is Object & Class?
+→ Object = instance; Class = blueprint.
+
+What is Inheritance?
+→ Reuse code from parent class.
+
+What is Polymorphism?
+→ One task, many forms — overloading (compile time) & overriding (runtime).
+
+What is Abstraction?
+→ Hiding internal logic using abstract classes/interfaces.
+
+What is Encapsulation?
+→ Binding data & methods, using private fields with public getters/setters.
+
+🔸 Java Language Features
+Why Java doesn't support operator overloading?
+→ Simplicity, readability, no ambiguity.
+
+Does Java support call by value?
+→ Yes. Even object references are passed by value.
+
+Why multiple inheritance is not supported via classes?
+→ To avoid ambiguity (Diamond Problem). Supported via interfaces.
+
+What is method overloading vs overriding?
+→ Overloading: same name, different params; Overriding: same method in subclass.
+
+Why return type overloading is not allowed?
+→ Causes ambiguity in method resolution.
+
+🔸 JDK, JRE, JVM & Class Loading
+JDK vs JRE vs JVM?
+→ JDK = dev kit, JRE = runtime, JVM = executor.
+
+What is bytecode?
+→ .class file compiled from .java.
+
+What is ClassLoader?
+→ Loads classes during runtime (Class.forName() / loadClass()).
+
+What is dynamic class loading?
+→ Loading classes at runtime using ClassLoader.
+
+What is path vs classpath?
+→ path: OS-level (javac, java); classpath: where classes/jars are located.
+
+🔸 Memory & GC
+JVM memory areas?
+→ Heap, Stack, Class Area, PC Register, Method Area.
+
+Heap stores?
+→ Objects (created via new), managed by GC.
+
+Stack stores?
+→ Local variables, each thread has its own.
+
+When does garbage collection run?
+→ JVM managed, when no strong references exist.
+
+Types of GC?
+→ Serial, Parallel, G1 (Generational: Young, Old, Metaspace).
+
+final vs finalize vs finally?
+→ Const, GC cleanup method, try-catch block.
+
+🔸 Multithreading & Concurrency
+Thread vs Process?
+→ Thread = lightweight, shares memory; Process = independent.
+
+Thread lifecycle?
+→ New → Runnable → Running → Terminated.
+
+Thread creation methods?
+→ Extend Thread / Implement Runnable.
+
+join() vs sleep()?
+→ join() waits for other thread; sleep() pauses current thread.
+
+ExecutorService vs Thread?
+→ Pre-created pool of threads; better for performance.
+
+Thread-safe Map?
+→ ConcurrentHashMap (vs SynchronizedMap - full lock).
+
+What is Daemon thread?
+→ Background service thread (e.g., GC).
+
+What is shutdown hook?
+→ Code executed before JVM shuts down.
+
+Deadlock, Livelock, Starvation?
+→ Resource waits causing indefinite blocking.
+
+🔸 Exception Handling
+Checked vs Unchecked Exception?
+→ Compile-time vs runtime.
+
+throw vs throws?
+→ throw: explicitly raise exception; throws: method declaration.
+
+try-with-resources?
+→ Auto-closeable resources.
+
+🔸 Collections Framework
+List types?
+→ ArrayList, LinkedList, Vector, Stack.
+
+Set types?
+→ HashSet, LinkedHashSet, TreeSet.
+
+Map types?
+→ HashMap, LinkedHashMap, TreeMap, ConcurrentHashMap.
+
+fail-fast vs fail-safe?
+→ Fail-fast throws ConcurrentModificationException.
+
+Comparable vs Comparator?
+→ Comparable: natural order; Comparator: custom logic.
+
+🔸 String & Wrapper
+Why String is immutable?
+→ Security, thread-safe, string pool.
+
+String vs StringBuilder vs StringBuffer?
+→ Immutable vs mutable; Buffer is thread-safe.
+
+equals() vs ==?
+→ Content vs reference comparison.
+
+What is intern()?
+→ Puts string in pool.
+
+What is autoboxing?
+→ Primitive to wrapper conversion.
+
+🔸 Advanced Java
+What is Reflection?
+→ Runtime class, method inspection (Class.forName()).
+
+Serialization?
+→ Convert object to byte stream (save/send).
+
+Why transient?
+→ To skip field in serialization.
+
+Functional Interface?
+→ Interface with 1 abstract method (e.g., Runnable, Predicate).
+
+Lambda expression?
+→ Compact way to implement SAM interfaces.
+
+Stream API?
+→ map, filter, reduce, collect, etc.
+
+Optional class?
+→ Avoid NullPointerException.
+
+🔸 Common Coding
+Reverse String
+
+Palindrome check
+
+Find duplicates in String
+
+Remove spaces
+
+First non-repeating char
+
+Check anagrams
+
+Convert String to int (manual)
+
+Sort array, string
+
+🔸 API + RestAssured Testing
+Handle different environments?
+→ Parameterize base URI.
+
+Handle dynamic JSON?
+→ Use JsonPath, recursive parsing.
+
+Handle rate limiting?
+→ Retry with exponential backoff.
+
+Async validation?
+→ Polling with Job ID.
+
+429 errors?
+→ Retry logic.
+
+Multipart/form-data?
+→ Use multipart support in RestAssured.
+
+🔸 Spring Boot + Microservices
+Default/static methods in interfaces (Java 8+)
+
+Why microservices?: Scalability, independent deployment.
+
+Decomposition strategies: Business capability or subdomain.
+
+Service discovery: Eureka, API gateway.
+
+Central logging: ELK Stack / Prometheus + Grafana.
