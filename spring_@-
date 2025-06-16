@@ -1,0 +1,95 @@
+#
+Mvc {dispatcher servlet , annotation , view resolve , form validation , exception handler 
+flow ::: client req-->dispatcher--->mapping-->controller -->model-->view resolve n render
+frontconteroler
+init-binder 
+view resolver 
+@ModelAttribute ::: request param to model 
+#form
+#global exception handling
+when can i use @controller n @restcontroller ?
+@controller: it is fast, use it for small payload ,view/page need to return , ui based app 
+
+****data binding vs bean management ?
+
+
+
+spring: di , ioc , aop , transaction 
+boot: autoconfig , starter , embedded server , config_reduction
+modules : core{bean, context, container } , AOP , JPA , WEB
+RAD in spring boot : autoconfig , xml elemination , annotations , pom.xml , embedded server 
+DI ::: loose coupled 
+IOC ?types :::beanfactory , applicationcontext 
+ioc container what it does:: lifecycle of bean , when to inject it , scope of object 
+types of container
+spring bean vs normal object
+@@@bean wiring , scope :::wiring means connection with ioc container {xml,annotation,@bean}
+                      ::: <bean>,@Autowired,@inject , @resource , @bean n @configuration
+
+scope::: singleton , prototype  , request ,s ession , servletcontext , websocket_session
+@Autowired vs @inject ::: inject is for java std , 
+how autowired support optional sependency : @Autowired(required=false)
+
+byType mechanism::: is default way 
+@Qualifier::::If more than one bean of the same type is available in the container,
+, @primary ::::defines a preference when multiple beans of the same type are present.
+           ::: priority to a bean @primary 
+@component vs @bean 
+class managed by ioc , it is a bean now , its obj will be maintained nder ioc 
+
+@qualifier 
+constructor vs setter injection 
+constructor injection how it can lead to circular dependencies problem ::::
+if i want to create immutable objects what toprefrer setter/constructor injection ?
+
+stereotype annotation ::: annotation with there roles 
+Application context implementation 
+lifecycle method :::: init , destroy , @Postconstruct , @preconstruct
+how spring annotation works internally ?
+@restcontroller vs @controller
+applicatipn.properties vs pom.xml difference ?
+Autowiring , types of autowiring ?
+configuration file ??? xml , java config {@bean n @component} , annotation 
+@required:::: *** setter injection , saying this property is compulsory to provide 
+              @Required
+    public void setName(String name) {
+        this.name = name;
+    }
+
+Profile ? use of profile 
+role based segregation of application 
+specific env is needed to see the application 
+spring.profile.active=dev,test,dbadmin
+
+
+
+disable web server?
+?>>spring.main.web-application-type=none
+>>edit pom.xml 
+can @requestmapping be used as method annotation?
+
+
+
+ @Value("${my.property}")
+  private String myProperty;
+
+
+or 
+
+
+ @Autowired
+    private Environment environment;
+
+
+
+
+
+dependency injection ---->
+constructor , setter , byname , bytype , no
+xml config :
+java cofig annotation:
+annotation based : Autowired {type },
+
+
+
+
