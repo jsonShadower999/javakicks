@@ -1,0 +1,76 @@
+@Controller
+public class MyController {
+
+    @PostMapping("/submit")
+    public String handleSubmit(@ModelAttribute("user") User user) {
+        // Process form data
+        return "result";
+    }
+}
+
+
+
+@Controller
+public class MyController {
+
+    @PostMapping("/submit")
+    public String handleSubmit(@RequestParam("name") String name, @RequestParam("age") int age) {
+        // Process form data
+        return "result";
+    }
+}
+
+
+@Controller
+public class MyController {
+
+    @PostMapping("/submit")
+    public String handleSubmit(HttpServletRequest request) {
+        String name = request.getParameter("name");
+        int age = Integer.parseInt(request.getParameter("age"));
+        // Process form data
+        return "result";
+    }
+}
+
+
+@Controller
+public class MyController {
+
+    @PostMapping("/submit")
+    public String handleSubmit(@Valid @ModelAttribute("user") User user, BindingResult result) {
+        if (result.hasErrors()) {
+            return "form";
+        }
+        // Process valid data
+        return "result";
+    }
+}
+
+
+@Component
+public class CustomValidator implements Validator {
+
+    @Override
+    public boolean supports(Class<?> class) {
+        return User.class.isAssignableFrom(class);
+    }
+
+    @Override
+    public void validate(Object target, Errors errors) {
+        User user = (User) target;
+        if (user.getAge() < 18) {
+            errors.rejectValue("age", "user.age", "Age must be at least 18");
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
