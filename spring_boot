@@ -5,6 +5,40 @@ current spring config that u r uisng in spring project?
 what is propetires file?YAML 
 --- contains configurations 
 spring vs spring boot vs spring mvc
+what are scope in spring 
+diff between prototype  and request scope ? by default scope of application is ?
+component of kafka 
+partition n topper in kafka 
+if consumer keep on failing how to handle 
+how kafka mantains its speed ?
+@@zero copy , sendfile , os level optimised 
+put n patch method in rest
+idempotance in restful api ? how to maintain it ?
+authentcation n authprisation in spring 
+multhithreading with spring ?
+role of @SpringBootActuator ?
+why microservice architecture ?
+spring cloud how it help to build microservices 
+if i replace @restcontroller with controller in spring boot ? what shall happen
+can i use @controller at place of @restcontroller ?when @controller is more appropriate ?
+communication between microservice?async vs sync 
+>>feign client 
+>>message broker 
+
+service registry n service discovery ? Eureka ?
+Spring cloud load balancer ?
+circuit breaker pattern ?
+when microservice is failed ? how to negotiate the action?
+OAuth2
+transaction in multiple services?
+>>>saga pattern 
+>>2pc pattern 
+
+
+what is containerization?
+how to manage configuration : spring cloud config 
+logging,tracing: zipkin , elk
+
 
 
 spring:::
@@ -77,4 +111,187 @@ Configure the Spring Boot framework
 define our application custom configuration properties
 what all things info u can write in application .properties file?
 db info , cache , gateway , mulitple service url , template , acutor , test 
+
+
+
+
+Application properties vs pom.xml?
+parent starter : what it does 
+starter web ? mvc , dispatcher servlet , embedded server 
+
+what is packaging ?
+>>> seprating the resource , metadat , code n storing in compressed 1 file format 
+
+who dose packaging?
+>>> maven , gradle , for simple java code java compiler 
+
+why packaging ?
+becoz the server Tomcat demands for the format to be given as input .
+the representational format it wants as a request is a jar , war file .
+
+
+what do you mean by term hot deploy ?
+WAR , EAR, JAR ?
+mvn compile vs mvn package ?
+Server codes 
+404 , 200 , 201 , 401 , 500
+what is autoconfiguration how can u stop autoconfiguration in spring?
+
+
+===========================
+MICROSERVICES!!!  
+
+>>... cost saving 
+>>... single unit deployment 
+>>.. 1 part of application cn occur error n full code review need to be done for that action CIRCUIT BREAKER 
+>> ..u want to provide the abstracted codebase to the coder (ABSTRACTION in application level)
+
+DISCOVERY SERVER:::@EnableEurekaServer
+>> register all services 
+>> it provide metadata host, name, port , health check url etc to main se4rvice
+
+
+let say the service 1 fails then ??
+>> case 1, services are coupled togeter:
+   1. trycatch / input validation , logging ,@controlleradvice , db overload , 
+>> case2 , service is isolated 
+  timeout , retyr logic , circuit breaker , cache , bulkhead , ribbon , eureka dashboard , montor tool :grafana 
+  1. circuit breaker-->log in grafana -->correct n fix->restart->deploy
+>>> message queue  architecture ::: decouple your application 
+
+>>>service mesh!!! 
+
+>>> service A(circuit breaker+fallback)
+>>> service B(tiemout + monitoring) '
+
+>>feign 
+>>hystrix 
+>>circuit breaker code , hystrix 
+>>ribbon 
+
+
+
+====================================================
+
+senario based questions 
+
+🌀 Consumer Failing in a Loop (Crash Loop, Poison Message)
+detect the failure ::: 
+apache kafka , monitor consumer lag , if lag keeps on inceraseing then the consumer must have stop sresponding 
+
+
+causes:::
+ribbon ::: max_attempt , retry_after_time setting 
+detect the message which fails n route them if the consumer say no , make another queue where they can flow
+circuit breaker , stop consumption on detection ...
+
+
+
+@ consumer stop only onces 
+>> network issue , db update missuse 
+>> retry_after_timeout
+>> look out for idempotency  ,
+>> when there is no ack send to producer stop the system, alert 
+>> how the idempotency is handled in kafka ???
+Kafka implements idempotence by assigning sequence numbers to messages and keeping track of them in 
+the broker. When a producer sends a message, Kafka checks if that sequence number has already
+been recorded. If it has, Kafka will not write it again, thus preventing duplicates.
+
+>>> the message can be too many CONSUMER is overloaded 
+use horizontal scaling 
+throtle 
+batches 
+=====================================
+
+new spring principle NEW SPRING ?
+Spring native ::: jvm dependency resolved !!!
+jakarta ::: complementary to dispatcher servlet , why jakarta if i was having javax 
+cloud ::: load balancing, service discovery, circuit breakers, routing, micro-proxy
+reactive programing :::applications that can handle concurrent and asynchronous tasks efficiently
+Reactive Streams, Project Reactor, and RxJava
+>> build the distributed sys 
+>>  asynchronous and non-blocking code
+
+
+Flux<String> names = Flux.just("Alice", "Bob", "Charlie")
+    .filter(name -> name.startsWith("A"))
+    .map(String::toUpperCase);
+
+names.subscribe(System.out::println);
+
+
+
+Observable.just("One", "Two", "Three")
+    .map(String::toUpperCase)
+    .subscribe(System.out::println);
+
+
+>>>  HOT RELOADING !!!
+
+1. allows developers to see changes made to their application in real-time without 
+restarting the server
+2. when ever the code changes are done , then restart
+
+=====================================================================
+
+TRANSACTION MANAGEMENT 
+
+1. MONOLITHIC ARCHITECTURE :::
+acid property
+single process , 1 db
+@Transactional 
+
+@Service
+public class OrderService {
+
+    @Transactional
+    public void placeOrder(Order order) {
+        orderRepository.save(order);
+        paymentService.process(order); // Should be part of same transaction if local
+    }
+}
+
+2. Microservices 
+
+
+SAGA DESIGN 
+1. sequence of transafction
+2. if t fails compensiate action ACTION 
+
+>>> TWO PHASE COMMIT ??------>CONSISTENT SYS , {blocking problem}
+
+>> OUTBOX PATTERN ??-----MESSAGE SYS  "Kafka + springboot"
+>> multi service , heavy load-->saga pattern 
+
+
+saga pattern ::::
+@Service
+public class OrderOrchestratorService {
+
+    public void startSaga(OrderDto order) {
+        try {
+            // Step 1: Create Order
+            restTemplate.postForEntity("http://ORDER-SERVICE/create", order, Void.class);
+
+            // Step 2: Reserve Inventory
+            restTemplate.postForEntity("http://INVENTORY-SERVICE/reserve", order, Void.class);
+
+            // Step 3: Process Payment
+            restTemplate.postForEntity("http://PAYMENT-SERVICE/pay", order, Void.class);
+
+            // All good
+            System.out.println("Order flow completed");
+        } catch (Exception e) {
+            // Handle compensations
+            restTemplate.postForEntity("http://INVENTORY-SERVICE/cancel", order, Void.class);
+            restTemplate.postForEntity("http://ORDER-SERVICE/cancel", order, Void.class);
+        }
+    }
+}
+
+
+
+
+
+
 
