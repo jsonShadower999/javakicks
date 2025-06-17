@@ -11,12 +11,17 @@ public class UserForm{
    private String email;
    @Size(min=6,message="password must be having special char")
    private String password;
+   private List<String> hobbies;
+   @NotBlank
+    private String gender;
 }
 =====> make the controller 
 public class Usercontroller{
   @GetMapping("/register")
   public String show(Model model){
     model.addAttribute("userform",new UserForm());
+    model.addAttribute("genderOptions", List.of("Male", "Female", "Other"));
+        
     return "register";
 }
 @PostMapping("/register")
