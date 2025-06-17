@@ -1,0 +1,40 @@
+import java.util.*;
+
+class Main {
+    public static void main(String[] args) {
+        String str1="i am happy";
+        String str2="i am sad";
+        //intersection of two stringi am
+        //use hashmap
+        String[] strarr=str1.split(" ");
+        String[] strarr2=str2.split(" ");
+        HashMap<String,Integer> hmp=new HashMap();
+        for(String word:strarr){
+            hmp.put(word,hmp.getOrDefault(word,0)+1);
+        }
+        System.out.println(hmp);
+        for(String word2:strarr2){
+            if(hmp.containsKey(word2)){
+                hmp.put(word2,hmp.get(word2)-1);
+            }
+            else{
+                hmp.put(word2,1);
+            }
+        }
+        ArrayList<String> res=new ArrayList<>();
+        for(Map.Entry<String,Integer> entry:hmp.entrySet()){
+            
+            if(entry.getValue()==0){
+                res.add(entry.getKey());
+            }
+        }
+        System.out.println(res);
+        
+        
+        }
+}
+        
+       
+       
+
+
