@@ -1,0 +1,26 @@
+// Online Java Compiler
+// Use this editor to write, compile and run your Java code online
+
+class Main {
+    public static void main(String[] args) {
+        int arr[]={12,23,36,46,62};
+        String str="spuda";
+        int max_timespent=arr[0];
+        char res=str.charAt(0);
+        for(int i=1;i<arr.length;i++){
+            int temp=arr[i]-arr[i-1];
+            char curkey=str.charAt(i);
+            if(temp>max_timespent){
+                max_timespent=temp;
+               // res=res+str.charAt(i);
+               res = curkey;
+                
+            }
+            else if(temp==max_timespent && curkey>res){
+                res=curkey;
+            }
+        }
+        System.out.println(res);
+       
+    }
+}
