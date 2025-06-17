@@ -1,0 +1,29 @@
+dependencies:
+>>>starter-web
+>>>validation-api
+>>>starter-thymeleaf 
+===========================================================
+public class UserForm{
+   @NotBlank(message="name is required")
+   private String name;
+   @Email(message="Invalid email")
+   @NotBlank(message="email is required")
+   private String email;
+   @Size(min=6,message="password must be having special char")
+   private String password;
+}
+=====> make the controller 
+public class Usercontroller{
+  @GetMapping("/register")
+  public String show(Model model){
+    model.addAttribute("userform",new UserForm());
+    return "register";
+}
+@PostMapping("/register")
+public String submit(@ModelAttribute("userform") @Valid UserForm userform, BindingResult res){
+  if(res.hasErrors()){
+       return "register";
+  }
+  return "success";
+}
+
