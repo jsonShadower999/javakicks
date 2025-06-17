@@ -1,0 +1,122 @@
+#
+why to use aop?
+join point :when the method execution will be done
+advice: before, after,after throw , after finally , around 
+
+1. make a userservice if there is any change in useservice then aspect join point will execute
+package com.example.service;
+
+import org.springframework.stereotype.Service;
+
+@Service
+public class UserService {
+    public void createUser() {
+        System.out.println("Creating user...");
+    }
+}
+
+2. advice formation
+
+
+import org.aspectj.lang.annotation.*;
+import org.springframework.stereotype.Component;
+
+@Aspect
+@Component
+public class LoggingAspect {
+
+    @Before("execution(* com.example.service.*.*(..))")
+    public void logBefore() {
+        System.out.println("Executing method...");
+    }
+
+    @After("execution(* com.example.service.*.*(..))")
+    public void logAfter() {
+        System.out.println("Method execution finished.");
+    }
+}
+
+
+AppConfig.class 
+
+import org.springframework.context.annotation.*;
+
+@Configuration
+@ComponentScan()
+@EnableAspectJAutoProxy
+public class AppConfig {
+
+    @Bean
+    public MyService myService() {
+        return new MyServiceImpl();
+    }
+}
+
+===========================================================
+@Aspect
+@Component
+public class NotificationAspect {
+
+    @AfterReturning("execution(* com.example.service.UserService.register(..))")
+    public void sendNotification(JoinPoint joinPoint) {
+        System.out.println("Notification sent for: " + joinPoint.getSignature().getName());
+        // Add email/SMS logic here
+    }
+}
+
+--->Productservice!!!
+@Service
+public class ProductService {
+
+    @Cacheable("products")
+    public Product getProductById(String id) {
+        System.out.println("Fetching from DB...");
+        return productRepository.findById(id);
+    }
+
+    @CacheEvict(value = "products", allEntries = true)
+    public void clearCache() {
+        System.out.println("Cache cleared.");
+    }
+}
+
+###logging
+
+@Aspect
+@Component
+public class LoggingAspect {
+
+    @Before("execution(* com.example.service.*.*(..))")
+    public void logMethodCall(JoinPoint joinPoint) {
+        System.out.println("Called: " + joinPoint.getSignature());
+    }
+
+    @AfterThrowing(pointcut = "execution(* com.example..*(..))", throwing = "ex")
+    public void logException(Exception ex) {
+        System.out.println("Exception: " + ex.getMessage());
+    }
+}
+
+
+============================================================!!!!
+
+You can combine AOP with:
+
+Notifications: in @AfterReturning or custom event listeners
+
+Caching: with @Cacheable and @CacheEvict
+
+Logging: using @Before, @After, @Around, or @AfterThrowing
+
+Monitoring: measure performance using @Around (e.g., System.currentTimeMillis())
+
+========================================================!!!!
+
+request lifecycle :::
+request--->dispatcher servlet--->handler mapping 
+                             ---->controller(returns modelandview)
+                              ---->viewresolver
+                              ---->view 
+
+
+
