@@ -291,6 +291,57 @@ public class OrderOrchestratorService {
 
 
 
+=====================================
+@Component
+@Schsedule(cron="15 ****")
+
+
+<bean id="studentbean" class="com.javatpoint.Student">  
+
+<property name="name" value="Vimal Jaiswal"></property>  
+or
+<constructor-arg value="10" type="int"></constructor-arg>  
+or 
+<constructor-arg>  
+<list>  
+<value>Java is a programming language</value>  
+<value>Java is a Platform</value>  
+<value>Java is an Island of Indonasia</value>  
+</list>  
+</constructor-arg>  
+
+or
+
+<constructor-arg>  
+<list>  
+<ref bean="ans1"/>  
+<ref bean="ans2"/>  
+</list>  
+</constructor-arg>  
+
+or
+
+<constructor-arg>  
+<map>  
+<entry key="Java is a Programming Language"  value="Ajay Kumar"></entry>  
+<entry key="Java is a Platform" value="John Smith"></entry>  
+<entry key="Java is an Island" value="Raj Kumar"></entry>  
+</map>  
+</constructor-arg>  
+
+</bean>  
+
+
+#constructor n setter injection !!!
+partial dependency 
+override 
+@@@@Autowired is used for object injection 
+
+
+<bean id="a" class="org.sssit.A" autowire="byName"></bean>  
+byName , byType , constructor , no ----bean autowire
+
+<bean id="b" class="com.javatpoint.A" factory-method="getB"></bean>  
 
 
 
