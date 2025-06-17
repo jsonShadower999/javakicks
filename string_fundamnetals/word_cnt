@@ -1,0 +1,17 @@
+import java.util.HashMap;
+
+class Main {
+    public static void main(String[] args) {
+        String str = "All is now All";
+        HashMap<String, Integer> hmp = new HashMap<>();
+        
+        //word
+        String[] words = str.split(" ");
+
+        for (String word : words) {
+            hmp.put(word, hmp.getOrDefault(word, 0) + 1);
+        }
+        
+        System.out.println(hmp);
+    }
+}
