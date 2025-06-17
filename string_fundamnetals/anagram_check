@@ -1,0 +1,32 @@
+import java.util.*;
+
+class Main {
+    public static void main(String[] args) {
+        String str="abc";
+        String str2="cba";
+        char[] chstr=str.toCharArray();
+        char[] chstr2=str2.toCharArray();
+        
+        HashMap<Character,Integer> hmp=new HashMap<>();
+        for(char c:chstr){
+            if(hmp.containsKey(c)){
+                hmp.put(c,hmp.getOrDefault(c,0)+1);
+            }
+        }
+        //{a:1,b:1,c":1}
+        for(char c:chstr2){
+            if(hmp.containsKey(c)){
+                hmp.put(c,hmp.get(c)-1);
+            }
+            else{
+                System.out.print("not anagram");
+                break;
+            }
+           
+        }
+        System.out.println(hmp);
+        
+       
+       
+    }
+}
