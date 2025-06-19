@@ -1,3 +1,8 @@
+#exception handling
+==> using throw 
+==> create a userdefined exception extended with RuntimeException  class 
+==>create a generic class for all exceptions in side exception package 
+
 ---get all product whose category is Books and seller=storytimes
 
 @GetMapping
