@@ -22,7 +22,7 @@ class Main {
                 return i;
             }
             else if(arr[i]!=k && arr[i]>k){
-                return i;
+                return i;0
                 // becoz i =pos-1 
                 
             }
