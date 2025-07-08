@@ -87,4 +87,18 @@ public class EventController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Event not found.");
         }
     }
+
+    // sync api
+    // add multiple evt at same time 
+    @PutMapping("/updateevt-parallel")
+    public ResponseEntity<String> updateEvtsametime(@RequestBody List<EventRequestList> evt_list){
+        boolean updated_stats=evtService.updateEvtatsametime(evt_list);
+        if(updated_stats==true){
+            return ResponseEntity.ok("success!!!");
+
+        }
+        else{
+             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Some updates failed.");
+        }
+    }
 }
