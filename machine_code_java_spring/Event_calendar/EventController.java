@@ -1,0 +1,43 @@
+@RestController
+@RequestMapping("/evtcal/api")
+public class EventController{
+    @Autowired 
+    private EventService evtservice;
+    public EventController(){
+        this.evtservice=evtservice
+    }
+    @GetMapping("/getevtdetails")
+    public List<Event> getevtdetails(){
+        List<Event> evt_list=evtservice.getAllEvents();
+        return evt_list;
+    }
+    @PostMapping("/createvt")
+    public String createEvt(@RequestBody Event evt){
+        if(evt){
+            Event new_evt=new Event(evt);
+            evtservice.addEvt(new_evt);
+            return "event is registerd!!";
+        }
+        else{
+            return " event is ambiguosu";
+        }
+    }
+}
+@GetMapping("/geteventbytitle/{title}")
+public Event getevtbytitle(@RequestParam String title){
+    Event evt_requested=evtservice.getEvtByTitle(title);
+    if(evt_requested!=null){
+        return evt_requested;
+
+    }
+    else{
+        Event evt=new Event(null);
+        return evt;
+    }
+}
+@PutMapping("/updateEvt/{title}")
+public Event updateEvt(@RequestParam String title, @RequestBody Event evt_details){
+    Event evt_needed=evtservice.getEvtByTitle(title);
+    evtrservice.update(evt_needed,evt_details)
+
+}
