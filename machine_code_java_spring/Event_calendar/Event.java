@@ -1,6 +1,9 @@
 import java.time.LocalDateTime;
 
 public class Event {
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private UUID evtid;
     private String title;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
