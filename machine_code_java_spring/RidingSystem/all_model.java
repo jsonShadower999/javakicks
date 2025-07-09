@@ -49,7 +49,15 @@ class Vehicle{
 
 }
 
-
+class RideRequest {
+    String requestId;
+    Person requester;
+    Location pickupLocation;
+    Location dropLocation;
+    VehicleType requestedVehicleType;
+    LocalDateTime requestTimestamp;
+    RideStatus status;  
+}
 class Ride{
     String rideId;
     Person rider;
