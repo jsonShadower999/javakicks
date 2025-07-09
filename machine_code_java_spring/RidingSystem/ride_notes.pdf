@@ -1,0 +1,76 @@
+process flow
+
+
+person send request on network RDERREQUEST 
+driver accept RIDERREQUEST send ACK to the chossen person 
+ride obj is created having ride info (ride_id,rider_name,requester_name,rider_location,requester_location,time_duration, traffic_%,ride_pay_initial,ride_pay_variant)
+pay 
+ride_vehicle()
+
+person{
+    username, current_location , choosen_vehicle 
+}
+
+driver {
+    drivername;
+    driverid;
+    driverlocation,
+    driver_registered_vehile_list[];
+    driving_licence,
+    driver_rating,
+    driver_phone,
+    driver_state_origin,
+    driver_current_pay;
+}
+
+ride{
+    ....user 1-1
+    ....driver  1-1
+    ride_duration;=distance(user-driver)
+    ride_owner;
+    ride_driver;
+    ride_pay;
+    ride_pay_variate;
+    ride_tax_platform;
+
+
+}
+--->status of riderequest can be requested,accepted,cancelled,completed!!!
+
+riderequest{
+    requestid;
+    requester;
+    current_requester_loc;
+    drop_loc;
+    vehicle_type_booked;
+    
+}
+vehicle{
+    vehicle vid;
+    type;
+    licenceholder ;
+    model ;
+    isverified;
+    mantinance_ratio%;
+    hasdocsproof;
+
+
+}
+
+payment{
+    payid;
+    amt;
+    payplatform ;
+    paystatus;
+    transactionid;
+    paytime;
+
+}
+
+location{
+    current_latitude;
+    current_longitute;
+    
+}
+
+
