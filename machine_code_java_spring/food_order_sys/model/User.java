@@ -36,6 +36,7 @@ public class User {
     private String email;
     private int age;
     private long phone;
+    private String password;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Order> orders;
