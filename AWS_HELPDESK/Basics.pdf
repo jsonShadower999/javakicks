@@ -1,0 +1,221 @@
+AWS PUBIC AND PRIVATE SERVICES 
+EXAMPLES OF PUBLIC AND PRIVATE SERVICES 
+WHAT DO YOU MEAN BY ON-PREMISE 
+> VIRTUAL PRIVATE CLOUD 
+> VPC /REGION  BY DEFAULT ?
+
+> HOW TO CREATE VIRTUAL VPC ,CUSTOM VPC 
+> COMPONENT OF VPC -->SUBNET , CIDR RANGE , DEFAULT CIDR=> 172.31.0.0/16 
+vpc has  subnet ranges , subnet is associated to certain region 
+>AVALABILITY VS REGION vs edge Loc 
+
+>VPC peering ?
+
+EC2 ? IAAS 
+TYPES OF STORAGE IN EC2?VOLUME N INSTANCE STORAGE 
+STATE OF EC2 INSTANCE ? create ,pending, lauch,running,stopped(disk),terminated 
+How to create a ec2 instace ?
+instance id 
+instance name 
+os setting
+network setting ---port 22 ssh 
+security grps auth http https 
+rout ebased config 
+
+that will create access key n access secreat code . 
+
+> by default EC2 is private 
+> to access the ppublic api , network use internet gateway config 
+
+Types of EC instance ?
+spot instance 
+t2.micro2 
+t2.micro1 
+c5 
+c6g
+
+0.0.0.0/0 ? what type of IP it is ?
+(all IP address are open for communication to EC2 instance )
+
+AWS lambda vs ec2 ?
+ec2==> virtual machine creation 
+lambda ==> code run on event propoagrtte n is config to storage 
+            per api hit , time taken in req-response lifecycle 
+
+
+
+
+
+what is AWS AMI 
+> Amazon machine image 
+> AMI comes with permission , root valume , block device mapping 
+
+AWS console vs AWS CLI ?
+
+
+
+AWS cloudwatch ?
+> launch EC2 instance , monitoring_ENABLED 
+> manage and monitor the operational data .
+> metric , cloudwatch log , cloudwatch event , cloudwatch bridge 
+> create a schedule in cloud watch to take snapshop , and introduce versioning in datastore 
+>Alarm system OK/ALARM -->SNS notification , create ALAMRS 
+
+
+>AWS RDS vs AWS DynamoDB vs AWS Athena?
+>in RDS in security grp communication must be open for port 3306 .
+>Athena is the datastorer u can query the athena for fetching data .
+
+
+
+
+
+
+>host a static fronend website to AWS? and run it ?
+>host a sql server on AWS?
+>VPC peering how to achive by code ?
+>creating template for AWS resource creation using terraform 
+>write a lambda function to provide all IAM users in AWS 
+>list all EC2 instance running 
+
+>lauch a complete web app in aws ?
+
+create s3 bucket with private access , uploat the frontend zip ,unzip n run 
+use AWS cloudfront -->for fast access and config with s3 bucket to access bucket data 
+in s3 alter the policy and add cloudfront config 
+buy a domain and url for website from hostinger or other platform , use route r5  to configure public vpc 
+add url to AWS route r5 and run the application 
+----->
+for backend aspect 
+create dynamo db to create table or schema code key-value 
+now create IAM user that can access dynamo db full access through lambda func call 
+create lambda func 
+attach IAM to specified lambda func 
+write lambda code n deploy n test 
+use curl lambda_url to test in web 
+now reformat frontend code n upload on s3 bucket with lambda url integrated 
+
+
+Elastic Block STORAGE ? 
+VOLUME 
+snapshot 
+
+public Ip , private Ip , elastic Ip ?
+
+***elastic Ip is charged !!!
+
+
+
+> create a script to autosclae ec2 instance with id "1234re236ter"?
+> load balancing script ?
+
+
+IAM grp-->user , role , gropus 
+
+
+client sdk vs resource sdk 
+
+
+vertical vs horiontal scaling 
+
+High Available ::: fault-tolerant , redundancy , automated recovery 
+region design 
+
+EC2, ECS , EFS 
+
+
+
+AWS Beanstack 
+
+
+==============================================================================
+
+
+You have been assigned to design a VPC architecture for
+a 2-tier application. The application needs to be highly available and scalable.
+How would you design the VPC architecture?
+
+
+VPC contain various subnet grps 
+1. public subnet grp :: load balancer --->incoming internet traffic 
+2. private subnet  grp::: application server API---> loadbalancer 
+
+
+
+Question 2: Your organization has a VPC with multiple subnets. 
+You want to restrict outbound internet access for resources in one 
+subnet, but allow outbound internet a
+access for resources in another subnet. How would you achieve this?
+
+routing table alteration go on route setting 
+remove 0.0.0.0/0 Ip and add ur ip list or internet gateway  
+
+
+
+ You have a VPC with a public subnet and a private subnet. 
+ instances in the private subnet need to access the internet for software updates. 
+ How would you allow internet access for instances in the private subnet?
+
+ NAT gateawy creation in public subnet 
+ route all outbound request to NAT gateway 
+
+
+
+
+ : You have launched EC2 instances in your VPC,
+  and you want them to communicate with each other using
+   private IP addresses. What steps would you take to enable this communication?
+
+   instances must be in same VPC 
+   instances must be in same subnet grp bound 
+
+
+
+NACL ?
+inbound and outbound rules can be defined here 
+
+NACL vs security groups ?
+
+
+
+
+:You have a private subnet in your VPC that contains a number of instances that should not have direct internet access. However, you still need to be able to securely access these instances for administrative purposes.
+ How would you set up a bastion host to facilitate this access?
+
+ create a bastion host server EC2 in public subnet 
+ inbound n outbound ip to 
+ trusted IP addresses .
+
+
+
+web app host req: high available 
+
+Take EC2 instance , deploy ur code in EC2 
+use load balancer , auto-scale 
+static file in cloudfront n s3 
+else on DynamoDB 
+
+
+EC2 instance troblule shoot not working ?
+
+Ec2 instance current status check 
+Ec2 instance security grp check 
+Ec2 instance network restrictions  .
+see the logs n alarm of cloudwatch metric check  . 
+see the role policy , grp ploicy etx .
+else replace the ec2 create snp n replace .
+
+
+
+How to replace the preexisting bad EC2 with new ?
+create a snapshot of EC2 volume 
+create a new EBS using snapshot 
+make a new ec2 instance attach this ebs to ec2 new instance . 
+
+
+read heavy use--->RDS 
+write heavy -->use Dynamo db , AFS 
+
+
+secure communication::: private subnet , NACL rule - policy , AWS kms 
+

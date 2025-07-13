@@ -1,0 +1,7 @@
+EC2: 
+>>new virtual machine creation
+>> new server to listen ur request 
+>> for persistant storage n frequent data retrival 
+use elastic block storage 
+>>Auto scaling ::: require manual script writing 
+>> load balancing in instance need a manual script 

@@ -1,0 +1,146 @@
+difference between EC2 and lambda Function in term of scalibilty and use case?
+what is IAM , access control ?
+Architect secure , scalable , fault-tolerant ETL pipeline in AWS?
+KMS in Aws . data encryption and decrypt data ?
+Explain how to design realtime data ingestion and transformation pipeline 
+using Lambda ,kinesis ,glue ?
+
+
+OLTP VS OLAP ? dfference 
+ETL pipeline stages to create ?
+>>> reduce latency , large dataset , minimal downtime how to create ETL process?
+>>> troubleshoot ETL pipeline ? log tools ?
+
+You’re tasked with optimizing a highly transactional SQL database that experiences latency issues during peak hours. What steps would you take to identify and fix the performance bottleneck?
+
+Explain how you would perform complex joins and aggregations in AWS Redshift for a data warehouse use case. How do you manage table distribution and sort keys for optimal query performance?
+
+What is the role of a message queue like Kafka in an ETL pipeline?
+
+What is batch processing, and how does it differ from real-time streaming in data pipelines?
+
+Medium:
+
+How would you build an ETL pipeline in AWS that processes data in real-time using Kinesis, Lambda, and DynamoDB?
+
+How do you handle schema evolution in a large ETL pipeline? What strategies do you use to avoid data consistency issues?
+
+Hard:
+
+Imagine an ETL pipeline using AWS Glue, where the data source (e.g., S3 bucket) has millions of files. How would you manage the file partitioning strategy and optimize Glue jobs for faster processing?
+
+Given that Kafka and Kinesis both offer data streaming capabilities, in what scenarios would you prefer one over the other? What are the trade-offs between the two?
+
+How would you implement a Python function to transform data from one format (CSV) to another (JSON)?
+
+What is the purpose of a Python virtual environment? Why is it important in development?
+
+Medium:
+
+Write a Python function that reads data from an AWS S3 bucket and performs basic transformations (filtering, aggregating) using Pandas.
+
+How do you manage parallel processing in PySpark when working with large datasets?
+
+Hard:
+
+Given a large set of unstructured data (log files, JSON records), write a PySpark script that can efficiently clean, filter, and transform the data before loading it into a database.
+Write a Python script that leverages AWS Boto3 to automate the deployment of an AWS Lambda function, trigger an S3 event, and log the response in CloudWatch.
+
+You're tasked with building a REST API to handle basic CRUD operations for a user database. How would you go about designing and deploying this API using AWS services?
+
+You have a requirement to deploy a web application in AWS. What services would you use, and how would you ensure scalability?
+
+Medium:
+
+Your organization wants to move its ETL workflows to AWS. How would you assess the current infrastructure, choose the right AWS services, and ensure minimal downtime during migration?
+
+Design a serverless architecture on AWS for a large-scale data processing application that involves both batch and real-time data.
+
+Hard:
+
+You have a complex data processing pipeline that aggregates data from different systems (legacy databases, real-time streams, flat files) and loads it into an AWS data warehouse. How would you ensure high availability, fault tolerance, and data consistency across different AWS services?
+
+Imagine that you need to design an AWS-based data pipeline that performs real-time data transformation and storage in Snowflake from a variety of streaming sources (Kafka, Kinesis). How would you architect this solution, ensuring that it is scalable, secure, and cost-efficient?
+
+7. Machine Learning and NLP (if applicable)
+Easy:
+
+What is the difference between supervised and unsupervised machine learning? Can you give an example of each?
+
+How would you evaluate the performance of a machine learning model?
+
+Medium:
+
+How would you go about tuning hyperparameters for a machine learning model in AWS SageMaker or any other ML platform?
+
+You’re building an NLP model for sentiment analysis. What data preprocessing steps would you perform before feeding the data into a machine learning model?
+
+Hard:
+
+Explain how you would deploy an NLP model at scale using AWS services like SageMaker, Lambda, and API Gateway. How would you ensure high availability and low latency?
+
+You need to build a machine learning pipeline that processes and transforms large amounts of data in real-time, including sentiment analysis and topic modeling. How would you architect this pipeline on AWS?
+
+8. Code Snippets
+Easy:
+
+Write a Python function that reads a file from S3 and prints its contents.
+
+python
+Copy code
+import boto3
+
+def read_s3_file(bucket_name, file_key):
+    s3 = boto3.client('s3')
+    response = s3.get_object(Bucket=bucket_name, Key=file_key)
+    print(response['Body'].read().decode('utf-8'))
+Medium:
+
+Write a PySpark code snippet to read a CSV file, filter out records with missing values, and then perform an aggregation.
+
+python
+Copy code
+from pyspark.sql import SparkSession
+
+spark = SparkSession.builder.appName("ETL Example").getOrCreate()
+
+# Read the CSV file
+df = spark.read.option("header", "true").csv("s3://path_to_your_file.csv")
+
+# Filter out missing values
+df_filtered = df.dropna()
+
+# Perform aggregation
+df_aggregated = df_filtered.groupBy("column_name").count()
+
+df_aggregated.show()
+Hard:
+
+Write an AWS Lambda function in Python that triggers upon an S3 event and processes the file to extract metadata (e.g., file size, last modified date).
+
+python
+Copy code
+import json
+import boto3
+
+def lambda_handler(event, context):
+    s3_client = boto3.client('s3')
+
+    # Extract S3 bucket name and object key from event
+    bucket_name = event['Records'][0]['s3']['bucket']['name']
+    object_key = event['Records'][0]['s3']['object']['key']
+
+    # Fetch metadata
+    response = s3_client.head_object(Bucket=bucket_name, Key=object_key)
+    metadata = {
+        "file_size": response['ContentLength'],
+        "last_modified": response['LastModified'].strftime('%Y-%m-%d %H:%M:%S')
+    }
+
+    # Print metadata or save to a database
+    print(json.dumps(metadata))
+
+    return {
+        'statusCode': 200,
+        'body': json.dumps(metadata)
+    }
