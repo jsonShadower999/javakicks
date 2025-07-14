@@ -1,0 +1,46 @@
+aws kinesis create-stream 
+\--stream-name mykintcodebase \
+--shard-count 1 
+
+
+now kinesis is ready to accept data as stream 
+
+import boto3 
+import json 
+import time 
+kinesis=boto3.client('kinesis')
+for i in range(5):
+   data={
+    'evt_id':i,
+    'time_stamp':time.time(),
+    'evt_val':i+3*(i+23)
+   }
+kinesis.put_record(
+    StreamName='mykintcodebase',
+    Data=json.dumps(data),
+    PartitionKey='partitionKey'
+)   
+
+----now i need to analyse n remodel the data using pyspark 
+---using EMR /sageaker 
+
+---create a spark session in sagemaker 
+spark=SparkSession.builder.appName("kinesisToS3").getOrCreate()
+--schema 
+schema=StructType().add("evt_id",IntegrType())
+            .add("timestamp",time.time())
+            .add("evt_val",IntegerType())
+
+df=spark.readStream.format("kinesis")
+                   .option("streamName","MykintCodebase")
+                   .option("region","us-east-1")
+                   .load()
+
+--store df in parquet format 
+query=df.writeStream.format("parquet")
+        .option("checkpointLocation","s3://my-bucket/checkpoints/")
+        .option("path","s3://my-bucket/kinesis-output/")
+        .outputMode("append")
+        .start()
+query.awaitTermination()
+        

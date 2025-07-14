@@ -5,3 +5,12 @@ EC2:
 use elastic block storage 
 >>Auto scaling ::: require manual script writing 
 >> load balancing in instance need a manual script 
+
+
+
+AWS lambda 
+
+server handling center 
+code for server platform 
+stateless 
+

@@ -1,0 +1,43 @@
+# HOW TO ARCHITECT A HIGH-PERFORMANCE BATCH PROCESSING 
+# pipeline ON aws ...
+
+
+# i have huge data 
+# i am using batch processing pipeline 
+# 1.***** Data ingestion---EXTRACT (EC2 n lambda n s3)
+# 2.***** Data Transformation---clean,filter,agregate,plot 
+# >>>>spark data transformation 
+# partition the data n optimise join 
+# AUTOSCALE+PARALLEL_PROCESS 
+
+# 3.***** Data Load 
+# parquet format 
+# data store in form of object storage 
+
+# 4.automate :::airflow n dag 
+# 5. monitor 
+
+
+# ======================================
+
+# I have build the api :::GIVE THE CUSTOMER DATA 
+# I pulled the API data in EC2 using curl api_url 
+# now for new data stream i have created lambda func 
+
+import json 
+import boto3 
+def lambda_handler(event,context):
+    s3=boto3.client('s3')
+    url="http://api.fetch_last_30sec"
+    data=request.get(url).content 
+    s3.put_object(Bucket="bid")
+    return{
+        'statusCode':200,
+        'data':data
+    }    
+
+===================================================
+
+1. Data Ingestion -EXTRACT layer 
+
+

@@ -14,34 +14,74 @@ ETL pipeline stages to create ?
 You’re tasked with optimizing a highly transactional SQL database that experiences latency issues during peak hours. What steps would you take to identify and fix the performance bottleneck?
 
 Explain how you would perform complex joins and aggregations in AWS Redshift for a data warehouse use case. How do you manage table distribution and sort keys for optimal query performance?
+--- Amazon redshift serverless for datawarehouse n analytics 
+--- Amazon sagemaker to create ml model 
+--select * + cross join 
+---main_query(predicate_list)
+--main_query(predicate_list_group_by_or_order_by)  
+---DONOT DIRECTLY STORE DATA ON redshift 
+---partition using random key 
+
+--the main table cn be optimised using distribution style n sort key 
+--sort key::: to search akeyword in sorted order data with 1 col , compound key
+--dist by gender , makes two bundle female chunk n male chunk 
+
+
+create table SaleMagnato{
+    date datetime not null,
+    region Location not null,
+    country varchar not null}
+    distkey(date)
+    sortkey(date)
+
+
 
 What is the role of a message queue like Kafka in an ETL pipeline?
+middleware for async communication in distributed sys 
+send event,data ,msg to part1-->2
+publish-subscribe 
 
 What is batch processing, and how does it differ from real-time streaming in data pipelines?
+Batch brocessing::: specfic interval
+                ::: here when a certain bulk is created then it goes for analysis
+                ::: online_offline + self managed +  task management is good 
+Stream Processing: within milliseconds 
+                  ::: continuos ingestion , analyze , action on data 
 
-Medium:
+
+AWS kinesis --->spark_app--> s3 -->delivery driver--->data warehouse redshift 
+  see datastream_tech1                   
+
 
 How would you build an ETL pipeline in AWS that processes data in real-time using Kinesis, Lambda, and DynamoDB?
 
 How do you handle schema evolution in a large ETL pipeline? What strategies do you use to avoid data consistency issues?
 
-Hard:
 
 Imagine an ETL pipeline using AWS Glue, where the data source (e.g., S3 bucket) has millions of files. How would you manage the file partitioning strategy and optimize Glue jobs for faster processing?
 
 Given that Kafka and Kinesis both offer data streaming capabilities, in what scenarios would you prefer one over the other? What are the trade-offs between the two?
 
 How would you implement a Python function to transform data from one format (CSV) to another (JSON)?
-
+see py_formater
 What is the purpose of a Python virtual environment? Why is it important in development?
+::: isolated project workspace 
+::: py interpreter n set of packages 
+:::no dependency conflict 
 
-Medium:
+python -m venv my_env 
+my_Env\Scripts\activate 
+pip install -r requirement.txt 
+
+deactivate
+
 
 Write a Python function that reads data from an AWS S3 bucket and performs basic transformations (filtering, aggregating) using Pandas.
-
+see py_filter_script
 How do you manage parallel processing in PySpark when working with large datasets?
+1. create a new EMR elastic mapreduce 
+2. partition the data using shuffle n random technique 
 
-Hard:
 
 Given a large set of unstructured data (log files, JSON records), write a PySpark script that can efficiently clean, filter, and transform the data before loading it into a database.
 Write a Python script that leverages AWS Boto3 to automate the deployment of an AWS Lambda function, trigger an S3 event, and log the response in CloudWatch.
@@ -49,8 +89,6 @@ Write a Python script that leverages AWS Boto3 to automate the deployment of an 
 You're tasked with building a REST API to handle basic CRUD operations for a user database. How would you go about designing and deploying this API using AWS services?
 
 You have a requirement to deploy a web application in AWS. What services would you use, and how would you ensure scalability?
-
-Medium:
 
 Your organization wants to move its ETL workflows to AWS. How would you assess the current infrastructure, choose the right AWS services, and ensure minimal downtime during migration?
 

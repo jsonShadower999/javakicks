@@ -1,0 +1,16 @@
+import boto3 
+import pandas as pd 
+def lambda_handler(event,context):
+    s3=boto3.client('s3')
+    res=s3.get_object(Bucket=bucket_name,Key=file_key)
+    data=res['Body'].read().decode('utf-8')
+    string_data=pd.read_csv(StringIO(data))
+    func_filterer(string_data , fiteredval="17-07-2022")
+
+def func_filterer(dataset,filteredval):
+    filtered_data=df[df[timeframe]==filteredval]
+    group_item_by="item_category";
+    new_dts=filtered_data.groupby(group_item_by)["item_sales"].agg(max)
+    return new_dts 
+
+
