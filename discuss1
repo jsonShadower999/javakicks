@@ -1,0 +1,101 @@
+import java.time.LocalDate;
+
+public class Employee{
+    private UUID id;
+    private String name;
+    private String department;
+    private Double salary;
+    private LocalDate joinDate;
+
+
+    public Employee(){}
+
+    public Emploee(Long id,String name , String dept, Double salary,LocalDate joindate){
+        this.id=id;
+        this.name=name;
+        this.department=dept;
+        this.salary=salary;
+        this.joindate=joindate;
+
+    }
+    public Long getId(){
+        return id;
+    }
+    public void setId(Long id){
+        this.id=id;
+    }
+    
+}  
+------------------------------------------------------------------
+//service
+impot java.util.*;
+import java.util.stream.Collectors;
+@Service 
+public class EmploeeService{
+    //call the repo
+    //mean while make employeelist to keep the data
+    private final List<Employee> emplist=new ArrayList<>();
+    private final AtomicLong idCounter=new AtomicLong(1);
+    //concurrent access can be 
+    public Employee addEmp(Employee emp){
+        emp.setId(idCounter.getAndTncrement());
+        emplist.add(emp);
+        return emp;
+    }
+    public List<Employee> getAllemp(){
+        return emplist;
+    }
+    public Optional<Employee> getEmpById(Long id){
+        return emplist.stream().filter(e->e.getId()==id);
+        //if id is tring 
+        //return emplist.stream().filter(e->e.getId().equals(id));
+
+
+    }
+    public List<Employee> getEmpByDept(String dept){
+        return emplist.stream().filter(emp->emp.getDepartment().equals(dept)).collect(Collectors.toList());
+    }
+    public List<Employee> getEmplistAfterdt(LocalDate date){
+        return emplist.stream().filter(emp->emp.getJoiningDate().isAfter(date))
+        .collect(Collectors.toList());
+    }
+    //get emp with max salary top 10
+    public List<Employee> get_high_Earning_emp(){
+        return emplist.stream()
+               .sorted((a,b)->Double.compare(b.salary(),a.salary()))
+               .collect(Collectors.toList());
+    }
+
+}
+--------------------------------------------
+emp.controller
+
+@RestController
+@RequestMapping("/empapi")
+public class EmpController {
+    @Autowired 
+    private EmpSrevice empservice ;
+
+    @PostMapping
+    public ResponseEntity<Employee> createEmp(@RequestBody Employee emp_new){
+        empservice.addEmp(emp_new);
+        return ResponseEntity.status(200).body("create emp !!!");
+    }
+    @GetMapping
+    public List<Employee> getAllEmp(){
+        empservice.getAllEmp();
+    }
+    @GetMapping("/{id}")
+    public ResponseEntity<Employee> getempbyid(@PathVariable Long id){
+        return empservice.getEmpById(id).orElse(ResponseEntity.body("not found"));
+
+    }
+
+    
+}
+------------------------------------------------------------
+public interface EmpRepo extends JpaRepository<Employee,UUID>{
+    Page<Employee> findByDept(String department, Pageable pageable);
+    
+
+}

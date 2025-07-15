@@ -1,0 +1,129 @@
+---most frequesnt word 
+// Online Java Compiler
+// Use this editor to write, compile and run your Java code online
+import java.util.*;
+class Main {
+    public static void main(String[] args) {
+        System.out.println("Try programiz.pro");
+        List<String> word_list=Arrays.asList("apple", "banana", "orange", "banana", "apple", "apple");
+        HashMap<String,Integer> hmp=new HashMap<>();
+        for(String word:word_list){
+            hmp.put(word,hmp.getOrDefault(word,0)+1);
+            
+        }
+        System.out.println(hmp);
+        Map.Entry<SWtring,Integer> ans=null;
+        for(MapEntry<String,Integer> entry:hmp.entrySet()){
+            if(ans==null|| ans.getValue()<entry.getValue()){
+                ans=entry;
+            }
+            
+            
+        }
+        if(ans!=null){
+            System.out.println(ans.getKey());
+        }
+    }
+}
+
+numbers.stream().filter(no->no%2==0).map(no->Math.pow(no,2)).collect(Collector.toList())
+
+words.stream().filter(a->a.length()<5).collect(Collector.toList())
+
+
+Optional.ofNullable(string_input).map(str->str.toUpperCase()).orElse("input is void")
+
+
+--- grp the string by len 
+
+
+// Online Java Compiler
+// Use this editor to write, compile and run your Java code online
+import java.util.*;
+class Main {
+    public static void main(String[] args) {
+        System.out.println("Try programiz.pro");
+        List<String> words={"apple", "banana", "pear", "peach", "plum"};
+        HashMap<Integer,List<String>> hmp=new HashMap<>();
+        for(String word:words){
+            int current_len=word.length();
+            if(!hmp.containsKey(current_len)){
+                hmp.put(current_len,new ArrayList<>(Arrays.asList(word)));
+            }
+            else{
+                hmp.get(current_len).add(word);
+            }
+        }
+        for(Map.Entry<Integer,List<String>> entry:hmp.entrySet()){
+            System.out.println(entry.getKey()+":"+entry.grtValue());
+        }
+      
+      
+         
+        
+    }
+}
+
+
+words.stream().collect(Collectors.groupingBy(String::length));
+
+
+salary_list.stream().sorted((a,b)->Integer.compare(a.getSalary()>b.getSalary())).collect(Collectors.toList())
+
+
+Optional.ofNullable(string_list).filter(str->str.contains("world")).map(str->str.toUpperCase()).orElse("no string found")
+
+
+List<List<String>> listoflist=Arrays.asList(
+    Arrays.asList("we","are","ahead"),
+    Arrays.asList("we","are","far"),
+    Arrays.asList("we","are","beginner")
+    List<String> flatlist=listoflist.stream().flatMap(List::stream).collect(Collectors.toList());
+
+)
+
+import java.util.*;
+Optional<Integer> number_list=numbers.stream().sorted(Comparator.reverseOrder()).skip(1).findFirst();
+
+
+
+// Online Java Compiler
+// Use this editor to write, compile and run your Java code online
+//
+
+class Main {
+    public static void main(String[] args) {
+        int arr[]={1,2,3,4,5};
+        int searchkey=5;
+        boolean found_status=binary_search(arr,searchkey);
+        System.out.println(found_status);
+      
+        
+    }
+    public static boolean binary_search(int[] arr, int searchkey){
+        int start=0;//0
+        int end=arr.length-1;//5
+        while(start<end){
+            int mid=end-start/2;
+            if(arr[mid]==searchkey){
+                return true;
+            }
+            else if(arr[mid]<searchkey){
+                start=mid+1;
+                
+                
+            }
+            else{
+                end=mid-1;
+            }
+            
+        }
+        return false;
+        
+        
+}
+
+}
+//here formula can be mid=start+(end-start)/2 for large datavalue 
+
+//pallindrome check
